@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://3qqwadjbipx7"]
+
+[ext_resource type="PackedScene" uid="uid://c7ualqqcggiel" path="res://player.tscn" id="1_u52ul"]
+[ext_resource type="Script" uid="uid://twf13pseft6s" path="res://ground.gd" id="2_oi3di"]
+[ext_resource type="Texture2D" uid="uid://d1e4ndpjj7oyl" path="res://background.png" id="3_0b4ue"]
+[ext_resource type="Script" uid="uid://drcqsopvdn76n" path="res://obstacle_spawner.gd" id="3_oi3di"]
+[ext_resource type="Script" path="res://ui.gd" id="4_ui"]
+[ext_resource type="Script" path="res://drunk_effect.gd" id="5_drunk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cilf6"]
+size = Vector2(4000, 80)
+
+[node name="Level" type="Node2D" unique_id=827541526]
+
+[node name="Player" parent="." unique_id=31189195 instance=ExtResource("1_u52ul")]
+position = Vector2(0, 520)
+
+[node name="Ground" type="StaticBody2D" parent="." unique_id=1325832249]
+script = ExtResource("2_oi3di")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1248790006]
+position = Vector2(0, 590)
+shape = SubResource("RectangleShape2D_cilf6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground" unique_id=1958808565]
+z_index = -1
+texture_repeat = 2
+position = Vector2(-600, -25)
+scale = Vector2(0.95, 0.95)
+texture = ExtResource("3_0b4ue")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 4128, 768)
+
+[node name="ObstacleSpawner" type="Node2D" parent="." unique_id=1136948491]
+position = Vector2(0, 518)
+script = ExtResource("3_oi3di")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("4_ui")
+
+[node name="DrunkEffect" type="CanvasLayer" parent="."]
+script = ExtResource("5_drunk")
